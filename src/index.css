@@ -12,12 +12,15 @@
   }
 
 .container{
-    @apply px-5 lg:px-10 py-5
+    @apply px-5 lg:px-10 py-5 mx-auto
 }
 
 .btn-default{
     @apply hover:bg-red-500 bg-amber-500 text-white font-medium rounded-full px-5 py-2 text-lg justify-center
 }
 .btn-black{
-    @apply bg-red-700 hover:bg-gray-400 text-white font-medium rounded-full px-5 py-2 text-lg justify-center
+    @apply bg-red-700 hover:bg-gray-500 text-white font-medium rounded-full px-5 py-2 text-lg justify-center
+}
+.btn-disabled{
+    @apply bg-gray-200 text-gray-500 font-medium rounded-full px-5 py-2 text-lg justify-center
 }
