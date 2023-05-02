@@ -33,7 +33,7 @@ const Recipes = () => {
               <div className="mb-4">
                 <p className="text-2xl font-medium text-red-700 tracking-wide mb-3">
                   {/* Experience: {experience} */}
-                  {experience} Experience
+                  {experience} of Experience
                 </p>
                 <p className="text-2xl font-medium tracking-wide text-red-700">
                   {/* Number of Recipes: {recipes.length} */}

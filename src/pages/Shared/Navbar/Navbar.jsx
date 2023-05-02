@@ -51,6 +51,9 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
+        <div>
+            <Link to='/login' className="btn-default">Login</Link>
+        </div>
         <div className="dropdown dropdown-end hidden lg:flex">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
