@@ -21,7 +21,7 @@ const SingleChef = ({ chef }) => {
         <div className="card-actions justify-end items-center mt-2">
         {/* <p>Likes: {likes}</p> */}
         <p className="flex  gap-2 text-xl items-center text-blue-700"><FaRegThumbsUp className="font-bold"/> {likes}</p>
-          <Link to={`/${id}`}><button className="btn-default">View Recipes</button></Link>
+          <Link to={`recipe/${id}`}><button className="btn-default">View Recipes</button></Link>
         </div>
       </div>
     </div>

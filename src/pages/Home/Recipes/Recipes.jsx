@@ -37,7 +37,7 @@ const Recipes = () => {
                 </p>
                 <p className="text-2xl font-medium tracking-wide text-red-700">
                   {/* Number of Recipes: {recipes.length} */}
-                   {recipes.length} Types of Recipes
+                   {recipes?.length} Types of Recipes
                 </p>
               </div>
 
@@ -63,7 +63,7 @@ const Recipes = () => {
         
         <h1 className='text-5xl font-bold text-center text-amber-500 uppercase my-10'>All Recipes</h1>
         {
-            recipes.map(recipe => <RecipeCard key={recipe.recipe_id} recipe={recipe}></RecipeCard>)
+           recipes && recipes.map(recipe => <RecipeCard key={recipe.recipe_id} recipe={recipe}></RecipeCard>)
         }
       </div>
     </>

@@ -4,11 +4,13 @@ import Main from "../layouts/Main";
 import Home from "../pages/Home/Home/Home";
 import Blog from "../pages/Blog/Blog";
 import Recipes from "../pages/Home/Recipes/Recipes";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -16,7 +18,7 @@ const router = createBrowserRouter([
         // loader: () => fetch('http://localhost:5000/chef')
       },
       {
-        path: ':id',
+        path: 'recipe/:id',
         element: <Recipes></Recipes>,
         loader: ({params}) => fetch(`http://localhost:5000/chef/${params.id}`)
       },
