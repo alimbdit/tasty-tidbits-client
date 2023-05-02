@@ -1,8 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar/Navbar";
-import Lottie from "lottie-react";
-import foodChoice from '../../../public/food-choice.json';
-import { FaArrowRight } from "react-icons/fa";
+
 
 const Header = () => {
   return (
