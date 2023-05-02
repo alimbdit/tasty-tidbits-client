@@ -5,7 +5,7 @@ import chef from "../../../../public/chef-logo.svg";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <div className="navbar bg-base-100 container ">
+    <div className="navbar bg-base-100 container mx-auto">
       <div className="flex-1">
         <Link to="/">
           <span className="flex gap-4">

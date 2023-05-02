@@ -1,5 +1,6 @@
 import React from "react";
 import { FaRegThumbsUp, FaThumbsUp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const SingleChef = ({ chef }) => {
   const {id, chef_name, chef_image, experience, recipes, likes,   } = chef;
@@ -20,7 +21,7 @@ const SingleChef = ({ chef }) => {
         <div className="card-actions justify-end items-center mt-2">
         {/* <p>Likes: {likes}</p> */}
         <p className="flex  gap-2 text-xl items-center text-blue-500"><FaRegThumbsUp className="font-bold"/> {likes}</p>
-          <button className="btn-default">View Recipes</button>
+          <Link to={`/${id}`}><button className="btn-default">View Recipes</button></Link>
         </div>
       </div>
     </div>
