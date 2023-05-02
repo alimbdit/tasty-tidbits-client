@@ -11,7 +11,7 @@ const Footer = () => {
         </h1>
         <hr className="mt-3 opacity-40" />
       </div>
-      <div className="flex flex-col lg:flex-row gap-7 justify-between items-center mt-10">
+      <div className="flex flex-col lg:flex-row gap-7 justify-between items-center lg:items-start mt-10">
         <div >
           <h1 className="font-bold text-2xl mb-5 uppercase">NEWSLETTER</h1>
           <div>

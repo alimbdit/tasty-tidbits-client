@@ -10,3 +10,11 @@
   .default{
     @apply font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-red-600
   }
+
+.container{
+    @apply px-5 lg:px-10 py-5
+}
+
+.btn-default{
+    @apply hover:bg-red-500 bg-amber-500 text-white font-medium rounded-full px-5 py-2 text-lg
+}
