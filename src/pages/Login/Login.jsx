@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import './Login.css'
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
+
+  const {googleLogin} = useContext(AuthContext)
+
+  const handleGoogleLogin = () =>{
+    googleLogin().then((result) => {
+      const loggedInUser = result.user;
+      console.log(loggedInUser);
+      setUser(loggedInUser);
+    })
+    .catch((error) => {
+      console.log("Error", error.message);
+    });
+  }
+
+
   return (
     <>
       <div className="my-16">
@@ -61,7 +77,7 @@ const Login = () => {
             <hr className="right-line" />
           </div>
 
-          <button className=" w-full  justify-center gap-2 text-center border-2 border-gray-500 text-gray-900 py-2 px-4 rounded-full flex items-center space-x-2 hover:bg-red-100 hover:bg-opacity-50 focus:outline-none mb-2 ">
+          <button onClick={handleGoogleLogin} className=" w-full  justify-center gap-2 text-center border-2 border-gray-500 text-gray-900 py-2 px-4 rounded-full flex items-center space-x-2 hover:bg-red-100 hover:bg-opacity-50 focus:outline-none mb-2 ">
           <img className="w-6" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google icon"/>
             <span className="text-center text-amber-700  text-xl font-medium">
             Continue with Google

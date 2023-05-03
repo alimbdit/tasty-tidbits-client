@@ -6,7 +6,7 @@ const Blog = () => {
     const blogs = useLoaderData();
 
     return (
-        <div className="mx-5 lg:mx-10 my-16">
+        <div className="mx-5 lg:mx-10 mb-10 container">
       <h1 className="font-extrabold text-5xl my-8 text-center text-gradient">
         Simple Question Answer
       </h1>
