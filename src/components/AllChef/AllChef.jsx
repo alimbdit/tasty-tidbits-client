@@ -4,8 +4,8 @@ import SingleChef from '../SingleChef/SingleChef';
 
 const AllChef = () => {
 
-    const {chefData} = useContext(AuthContext)
-    console.log(chefData)
+    const {chefData,} = useContext(AuthContext)
+    
 
     return (
         <div className='container'>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const SingleBlog = ({blog}) => {
     const {blog_id, question, answer} = blog;
-    console.log(blog)
+    // console.log(blog)
     return (
         <div className='container border border-error/25 rounded-2xl p-8 mb-10 bg-amber-500 bg-opacity-5'>
             <h1 className='font-bold text-red-700 mb-3 text-xl'>{blog_id}. {question}</h1>

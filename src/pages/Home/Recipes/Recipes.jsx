@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaRegThumbsUp } from "react-icons/fa";
 import { useLoaderData, useParams } from "react-router-dom";
 import RecipeCard from "../../../components/RecipeCard/RecipeCard";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 
 const Recipes = () => {
-  //   const { id } = useParams();
+    const { _id } = useParams();
 
-  const recipe = useLoaderData();
-  console.log(recipe);
+  const {chefData} = useContext(AuthContext);
+
+  // const recipe = useLoaderData();
+  const targetChef = chefData.find(chef => chef.id == _id)
+  // console.log(recipe);
 
   const {
     id,
@@ -18,7 +22,7 @@ const Recipes = () => {
     recipes,
     likes,
     short_description,
-  } = recipe;
+  } = targetChef;
 
   return (
     <>

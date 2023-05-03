@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const SingleChef = ({ chef }) => {
   const {id, chef_name, chef_image, experience, recipes, likes,   } = chef;
-  console.log(chef);
+  // console.log(chef);
   return (
     <div className="card w-full shadow-xl bg-red-100 bg-opacity-25">
       <figure className="p-5 ">

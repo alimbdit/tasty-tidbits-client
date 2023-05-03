@@ -1,9 +1,36 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, NavLink, useNavigation } from "react-router-dom";
 import chef from "../../../../public/chef-logo.svg";
+import { AuthContext } from "../../../providers/AuthProvider";
+import profilePic from '../../../assets/user.png';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isValid, setIsValid] = useState(true);
+  const [userPic, setUserPic] = useState();
+  const [userState, setUserState] = useState(false);
+  const navigation = useNavigation()
+  console.log(navigation.state)
+
+  const { user, logOut } = useContext(AuthContext);
+  // const {displayName, photoURL} = user;
+useEffect(() => {
+  setUserState(!userState)
+}, [user])
+ 
+
+  const handleError = () => {
+    setIsValid(false);
+  };
+
+  const handleLogOut = () => {
+    logOut().then()
+    .catch((error) => {
+      console.log(error);
+    });
+    console.log(user)
+  }
+
   return (
     <div className="navbar bg-base-100 container mx-auto">
       <div className="flex-1">
@@ -51,33 +78,47 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
-        <div>
-            <Link to='/login' className="btn-default">Login</Link>
-        </div>
-        <div className="dropdown dropdown-end hidden lg:flex">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
-        </div>
+        {user ? (
+          <div className="dropdown dropdown-end hidden lg:flex">
+            <label
+              tabIndex={0}
+              className="cursor-pointer border-2 border-blue-500 rounded-full hover:bg-slate-100 tooltip tooltip-left"
+              data-tip={user?.displayName}
+            >
+              <div className="w-10 h-10 p-0.5 ">
+                
+                {isValid ? (
+                  <img className="rounded-full" src={user?.photoURL} onError={handleError} />
+                ) : (
+                  <img src={profilePic}  />
+                )}
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </a>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+              <li>
+                <Link to='/' onClick={handleLogOut}>Logout</Link>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <div>
+            <Link to="/login" className="btn-default">
+              Login
+            </Link>
+          </div>
+        )}
       </div>
       <div className="lg:hidden">
         <button
@@ -137,7 +178,7 @@ const Navbar = () => {
                 </div>
               </div>
               <nav>
-              <div className="dropdown dropdown-end flex mb-2">
+                <div className="dropdown dropdown-end flex mb-2">
                   <label
                     tabIndex={0}
                     className="btn btn-ghost btn-circle avatar"

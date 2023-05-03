@@ -23,7 +23,7 @@ const Footer = () => {
             <input
               type="submit"
               value="subscribe"
-              className="input w-3/4 max-w-xs text-black rounded-full text-center font-bold hover:bg-white bg-amber-500 uppercase mt-4"
+              className="input w-3/4 max-w-xs text-black rounded-full text-center font-bold btn-default uppercase mt-4"
             />
           </div>
           <div className="flex mt-3 gap-8">

@@ -6,7 +6,7 @@ import "@smastrom/react-rating/style.css";
 
 const RecipeCard = ({ recipe }) => {
 
-    const [favorite, setFavorite] = useState(false)
+    const [favorite, setFavorite] = useState(false);
 
     const handleFavorite = () => {
         setFavorite(true);
@@ -22,7 +22,7 @@ const RecipeCard = ({ recipe }) => {
     rating,
   } = recipe;
 
-  console.log(recipe);
+  // console.log(recipe);
 
   return (
     <div className="container">

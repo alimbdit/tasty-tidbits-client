@@ -14,7 +14,7 @@ const Banner = () => {
           <button className="btn-default"><span className='flex items-center gap-2'>Explore Now <FaArrowRight/></span></button>
         </div>
         <div className="w-full">
-        <Lottie className=" mr-0" animationData={foodChoice} loop={true} />
+        <Lottie className=" mr-0 h-3/4" animationData={foodChoice} loop={true} />
         </div>
       </div>
     );
