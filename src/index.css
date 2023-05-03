@@ -24,3 +24,6 @@
 .btn-disabled{
     @apply bg-gray-200 text-gray-500 font-medium rounded-full px-5 py-2 text-lg justify-center
 }
+.btn-accept-disabled{
+    @apply bg-amber-300 text-white font-medium rounded-full px-5 py-2 text-lg justify-center
+}

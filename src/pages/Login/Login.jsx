@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import './Login.css'
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -6,7 +6,11 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
 
-  const {googleLogin} = useContext(AuthContext)
+  const [loginError, setLoginError] = useState('');
+  const [success, setSuccess] = useState("");
+  const emailRef = useRef()
+
+  const {googleLogin, logIn, setUser} = useContext(AuthContext);
 
   const handleGoogleLogin = () =>{
     googleLogin().then((result) => {
@@ -16,8 +20,38 @@ const Login = () => {
     })
     .catch((error) => {
       console.log("Error", error.message);
+      setLoginError(error?.message);
     });
   }
+
+  const handleLogin = event => {
+    event.preventDefault();
+    setLoginError("");
+    setSuccess("");
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    logIn(email, password)
+    .then(result => {
+      const loggedUser = result.user;
+      // navigate(from, {replace:true})
+      console.log(loggedUser)
+      setUser(loggedUser);
+      setSuccess("Login successful");
+        setError("");
+      
+    })
+    .catch(error => {
+      console.log(error)
+      setLoginError(error?.message);
+    })
+
+    form.reset()
+    console.log(email, password)
+  }
+
+  
 
 
   return (
@@ -25,7 +59,7 @@ const Login = () => {
       <div className="my-16">
         <div className="lg:mx-auto mx-5 lg:w-1/3 px-7 lg:px-12 py-9 border bg-red-100 bg-opacity-25 border-red-400 rounded-xl mb-6">
           <h1 className="text-2xl font-bold mb-10">Login</h1>
-          <form action="">
+          <form onSubmit={handleLogin} action="">
             <input
               className="input  rounded-full placeholder:text-gray-600 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7 mb-8 w-full"
               type="email"
@@ -48,9 +82,18 @@ const Login = () => {
                 <input type="checkbox" id="remember" value="remember" />
                 <label htmlFor="remember"> Remember Me</label>
               </span>
-              <Link className="text-red-500 underline" to="/register">
+              <Link className="text-amber-500 underline" to="/register">
                 Forgot Password
               </Link>
+            </div>
+
+            <div className="mt-5">
+              {
+                loginError && <span className="text-red-500 text-lg ">{loginError}</span>
+              }
+              {
+                success && <span className="text-red-500 text-lg ">{success}</span>
+              }
             </div>
 
             <input
@@ -61,7 +104,7 @@ const Login = () => {
 
             <p className="font-medium mt-4">
               Don&apos;t have an account?{" "}
-              <Link className="text-red-500 underline" to="/register">
+              <Link className="text-amber-500 underline" to="/register">
                 Create an account
               </Link>
             </p>
