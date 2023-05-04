@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaStar, FaHeart } from "react-icons/fa";
-import toast from 'react-hot-toast'
+import toast from 'react-hot-toast';
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
