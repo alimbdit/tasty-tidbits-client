@@ -7,7 +7,7 @@ import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
 import swal from "sweetalert";
 
-const userPic = "https://i.ibb.co/tDKXnzp/user.png";
+const userPic = "https://i.ibb.co/s9VWqPN/user.png";
 
 const Register = () => {
   const [registerError, setRegisterError] = useState("");
@@ -28,12 +28,13 @@ const Register = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = location.state?.from?.from?.pathname || "/login";
+  const from = location.state?.from?.from?.pathname;
 
   // const from = location.state?.from?.pathname || "/";
 
   console.log(from);
-  const { googleLogin, createUser, setLoading } = useContext(AuthContext);
+  const { googleLogin, gitHubLogin, createUser, setLoading } =
+    useContext(AuthContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,16 +47,33 @@ const Register = () => {
     const name = form.name.value;
     const photo = form.photo.value ? event.target.photo.value : userPic;
 
-    // if (!/(?=.*[A-Z].*[A-Z])/.test(password)) {
-    //   setRegisterError("please enter at least two upper case");
-    //   return;
-    // } else if (!/(?=.*\d)/.test(password)) {
-    //   setRegisterError("please enter at least one digit");
-    //   return;
-    // } else if (!/(?=.{8,})/.test(password)) {
-    //   setRegisterError("please enter at least eight character");
-    //   return;
-    // }
+    if (!/(?=.*[A-Z])/.test(password)) {
+      setRegisterError("please enter at least one upper case");
+      return;
+    }
+     else if (!/(?=.*?[a-z])/.test(password)) {
+      setRegisterError("please enter at least one lower case");
+      return;
+    } 
+     else if (!/(?=.*\d)/.test(password)) {
+      setRegisterError("please enter at least one digit");
+      return;
+    } 
+    else if (!/(?=.*?[#?!@$%^&*-])/.test(password)) {
+      setRegisterError("please enter at least one special character");
+      return;
+    }
+    else if (!/(?=.{6,})/.test(password)) {
+      setRegisterError("please enter at least six character");
+      return;
+    }
+     
+   
+
+    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+      setRegisterError("please enter valid email");
+      return;
+    }
 
     if (password !== confirmPassword) {
       setRegisterError("Password does not match");
@@ -73,7 +91,7 @@ const Register = () => {
         setSuccess("Registration successful");
         toast.success("Registration successful! 👍");
         updateUserProfile(result.user, name, photo);
-        navigate(from, { replace: true } );
+        navigate(from || "/login", { replace: true });
         // swal(sweetAlert);
         event.target.reset();
       })
@@ -98,7 +116,7 @@ const Register = () => {
   };
 
   const updateUserProfile = (user, name, photo) => {
-    // setLoading(true)
+    setLoading(true)
     updateProfile(user, {
       displayName: name,
       photoURL: photo,
@@ -111,7 +129,9 @@ const Register = () => {
       .catch((error) => {
         // An error occurred
         // ...
-        setRegisterError(error.message);
+        const errorText = error?.code.split("/");
+        // setRegisterError(error.message);
+        setRegisterError(errorText[1]);
       });
   };
 
@@ -121,10 +141,27 @@ const Register = () => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
         // setUser(loggedInUser);
-        navigate(from);
+        navigate(from || "/");
       })
       .catch((error) => {
-        console.log("Error", error.message);
+        const errorText = error?.code.split("/");
+        // setRegisterError(error.message);
+        setRegisterError(errorText[1]);
+      });
+  };
+
+  const handleGithubLogin = () => {
+    gitHubLogin()
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        // setUser(loggedInUser);
+        navigate(from || "/");
+      })
+      .catch((error) => {
+        const errorText = error?.code.split("/");
+        // setRegisterError(error.message);
+        setRegisterError(errorText[1]);
       });
   };
 
@@ -212,18 +249,14 @@ const Register = () => {
               <p className="text-green-500">{success}</p>
             </div>
 
-           
-              <input
-                className={`${
-                  accepted
-                    ? "btn-default cursor-pointer"
-                    : "btn-accept-disabled"
-                } mt-8 w-full`}
-                type="submit"
-                value="Register"
-                disabled={!accepted}
-              ></input>
-            
+            <input
+              className={`${
+                accepted ? "btn-default cursor-pointer" : "btn-accept-disabled"
+              } mt-8 w-full`}
+              type="submit"
+              value="Register"
+              disabled={!accepted}
+            ></input>
 
             <p className="font-medium mt-4">
               Already have an account?{" "}
@@ -254,7 +287,10 @@ const Register = () => {
               Continue with Google
             </span>
           </button>
-          <button className=" w-full  justify-center gap-2 text-center border-2 border-gray-500 text-gray-900 py-2 px-4 rounded-full flex items-center space-x-2 hover:bg-red-100 hover:bg-opacity-50 focus:outline-none mb-2 ">
+          <button
+            onClick={handleGithubLogin}
+            className=" w-full  justify-center gap-2 text-center border-2 border-gray-500 text-gray-900 py-2 px-4 rounded-full flex items-center space-x-2 hover:bg-red-100 hover:bg-opacity-50 focus:outline-none mb-2 "
+          >
             <FaGithub className="text-gray-700 font-bold text-2xl"></FaGithub>
             <span className="text-center text-amber-700  text-xl font-medium">
               Continue with GitHub

@@ -28,9 +28,9 @@ const Login = () => {
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
-  console.log(from)
+  console.log(from);
 
-  const { googleLogin, logIn, setUser, resetPassword } =
+  const { googleLogin, gitHubLogin, logIn, setUser, resetPassword } =
     useContext(AuthContext);
 
   const handleGoogleLogin = () => {
@@ -38,13 +38,27 @@ const Login = () => {
       .then((result) => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
-        // setUser(loggedInUser);
+        setUser(loggedInUser);
         navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log("Error", error.message);
         setLoginError(error?.message);
       });
+  };
+
+  const handleGithubLogin = () => {
+    gitHubLogin()
+    .then((result) => {
+      const loggedInUser = result.user;
+      console.log(loggedInUser);
+      setUser(loggedInUser);
+      navigate(from, { replace: true });
+    })
+    .catch((error) => {
+      console.log("Error", error.message);
+      setLoginError(error?.message);
+    });
   };
 
   const handleLogin = (event) => {
@@ -55,13 +69,41 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
+    if (!/(?=.*[A-Z])/.test(password)) {
+      setLoginError("please enter at least one upper case");
+      return;
+    }
+     else if (!/(?=.*?[a-z])/.test(password)) {
+      setLoginError("please enter at least one lower case");
+      return;
+    } 
+     else if (!/(?=.*\d)/.test(password)) {
+      setLoginError("please enter at least one digit");
+      return;
+    } 
+    else if (!/(?=.*?[#?!@$%^&*-])/.test(password)) {
+      setLoginError("please enter at least one special character");
+      return;
+    }
+    else if (!/(?=.{6,})/.test(password)) {
+      setLoginError("please enter at least six character");
+      return;
+    }
+     
+   
+
+    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+      setLoginError("please enter valid email");
+      return;
+    }
+
     event.target.reset();
     logIn(email, password)
       .then((result) => {
         const loggedUser = result.user;
-       
+
         console.log(loggedUser);
-        // setUser(loggedUser);
+        setUser(loggedUser);
         setSuccess("Login successful");
         setLoginError("");
         navigate(from, { replace: true });
@@ -86,12 +128,12 @@ const Login = () => {
     console.log(email);
     // resetPassword(email)
     sendPasswordResetEmail(auth, email)
-    .then(() => {
+      .then(() => {
         // Password reset email sent!
         // ..
         alert("Check your email to reset password");
         // swal(sweetAlert);
-        console.log('send email')
+        console.log("send email");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -133,15 +175,13 @@ const Login = () => {
                 <input type="checkbox" id="remember" value="remember" />
                 <label htmlFor="remember"> Remember Me</label>
               </span>
-            
-              
-                <button
-                  onClick={handleResetPassword}
-                  className="text-amber-500 underline"
-                >
-                  Forgot Password
-                </button>
-              
+
+              <button
+                onClick={handleResetPassword}
+                className="text-amber-500 underline"
+              >
+                Forgot Password
+              </button>
             </div>
 
             <div className="mt-5">
@@ -161,18 +201,17 @@ const Login = () => {
 
             <p className="font-medium mt-4">
               Don&apos;t have an account?{" "}
-              <Link className="text-amber-500 underline" to="/register" state={{from:location.state}}>
+              <Link
+                className="text-amber-500 underline"
+                to="/register"
+                state={{ from: location.state }}
+              >
                 Create an account
               </Link>
             </p>
           </form>
         </div>
-        <button
-                  onClick={handleResetPassword}
-                  className="text-amber-500 underline"
-                >
-                  Forgot Password
-                </button>
+
         <div className="mb-5 mx-5 lg:mx-auto lg:w-1/4 ">
           <div className="text-container mb-5">
             <hr className="left-line" />
@@ -193,7 +232,7 @@ const Login = () => {
               Continue with Google
             </span>
           </button>
-          <button className=" w-full  justify-center gap-2 text-center border-2 border-gray-500 text-gray-900 py-2 px-4 rounded-full flex items-center space-x-2 hover:bg-red-100 hover:bg-opacity-50 focus:outline-none mb-2 ">
+          <button onClick={handleGithubLogin} className=" w-full  justify-center gap-2 text-center border-2 border-gray-500 text-gray-900 py-2 px-4 rounded-full flex items-center space-x-2 hover:bg-red-100 hover:bg-opacity-50 focus:outline-none mb-2 ">
             <FaGithub className="text-gray-700 font-bold text-2xl"></FaGithub>
             <span className="text-center text-amber-700  text-xl font-medium">
               Continue with GitHub

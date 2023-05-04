@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ReviewCard from "./ReviewCard";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const CustomerReviews = () => {
-  const [reviews, setReviews] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/reviews")
-      .then((res) => res.json())
-      .then((data) => setReviews(data));
-  }, []);
+  const { reviews } = useContext(AuthContext);
 
   return (
     <div className="bg-opacity-25 bg-red-100 mb-20">
@@ -22,6 +18,8 @@ const CustomerReviews = () => {
           ))}
         </div>
       </div>
+
+   
     </div>
   );
 };

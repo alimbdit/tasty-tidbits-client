@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from '../firebase/firebase.config';
 
 
@@ -9,15 +9,45 @@ const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [dataLoading, setDataLoading] = useState(true);
+
     const [chefData, setChefData] = useState([]);
+    const [blogs, setBlogs] = useState([]);
+    const [recipes, setRecipes] = useState([]);
+    const [reviews, setReviews] = useState([]);
+
+   
 
     const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
     useEffect(()=>{
-        fetch('http://localhost:5000/chef')
+        fetch('https://tasty-tidbits-server-alimbdit.vercel.app/chef')
         .then(res => res.json())
         .then(data => setChefData(data))
+        setDataLoading(false)
     },[])
+
+    useEffect(() => {
+      fetch("https://tasty-tidbits-server-alimbdit.vercel.app/blog").then(res => res.json()).then(data => setBlogs(data))
+      setDataLoading(false)
+    } ,[])
+
+    useEffect(() => {
+      fetch("https://tasty-tidbits-server-alimbdit.vercel.app/reviews")
+        .then((res) => res.json())
+        .then((data) => setReviews(data));
+        setDataLoading(false)
+    }, []);
+
+   
+
+    useEffect(() => {
+      fetch("https://tasty-tidbits-server-alimbdit.vercel.app/recipes/")
+        .then((res) => res.json())
+        .then((data) => setRecipes(data));
+        setDataLoading(false)
+    }, []);
 
     const createUser = (email, password) => {
         setLoading(true)
@@ -30,6 +60,11 @@ const AuthProvider = ({children}) => {
     const googleLogin = () => {
         return signInWithPopup(auth, googleProvider)
     }
+    const gitHubLogin = () => {
+       return signInWithPopup(auth, githubProvider)
+    }
+
+
 
     const logIn = (email, password) => {
         setLoading(true)
@@ -75,7 +110,7 @@ const AuthProvider = ({children}) => {
 //       }
     
 
-    const AuthInfo = {user, chefData, googleLogin, loading, setLoading, logIn, createUser, setUser, resetPassword, logOut  };
+    const AuthInfo = {user, chefData, googleLogin, gitHubLogin, loading, setLoading, logIn, createUser, setUser, resetPassword, logOut, blogs, reviews, recipes,dataLoading  };
     return (
         <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>
     );

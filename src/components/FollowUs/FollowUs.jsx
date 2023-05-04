@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import FollowCard from "./FollowCard";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const FollowUs = () => {
-  const [recipes, setRecipes] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/recipes/")
-      .then((res) => res.json())
-      .then((data) => setRecipes(data));
-  }, []);
+    const {recipes} = useContext(AuthContext);
 
   return (
     <div className="rounded-2xl mt-24 mb-28">

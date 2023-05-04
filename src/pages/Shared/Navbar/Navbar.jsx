@@ -2,38 +2,38 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigation } from "react-router-dom";
 import chef from "../../../../public/chef-logo.svg";
 import { AuthContext } from "../../../providers/AuthProvider";
-import profilePic from '../../../assets/user.png';
+import profilePic from "../../../assets/user.png";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isValid, setIsValid] = useState(true);
   const [userPic, setUserPic] = useState();
   const [userState, setUserState] = useState(false);
-  const navigation = useNavigation()
-  console.log(navigation.state)
+  const navigation = useNavigation();
+  console.log(navigation.state);
 
   const { user, logOut } = useContext(AuthContext);
   // const {displayName, photoURL} = user;
-useEffect(() => {
-  setUserState(!userState)
-}, [user])
- 
+  useEffect(() => {
+    setUserState(!userState);
+  }, [user]);
 
   const handleError = () => {
     setIsValid(false);
   };
 
   const handleLogOut = () => {
-    logOut().then()
-    .catch((error) => {
-      console.log(error);
-    });
-    console.log(user)
-  }
+    logOut()
+      .then()
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(user);
+  };
 
   return (
-    <div className="navbar bg-base-100 container mx-auto">
-      <div className="flex-1">
+    <div className="navbar flex justify-between bg-base-100 container mx-auto">
+      <div className="flex lg:mr-52">
         <Link to="/">
           <span className="flex gap-4">
             <img className="w-10" src={chef} alt="" />
@@ -43,8 +43,7 @@ useEffect(() => {
           </span>
         </Link>
       </div>
-      <div className="flex-none gap-20">
-        <ul className=" gap-10 hidden lg:flex">
+      <ul className="  gap-10 flex-1 hidden lg:flex">
           <li>
             <NavLink
               to="/"
@@ -78,47 +77,68 @@ useEffect(() => {
             </NavLink>
           </li>
         </ul>
-        {user ? (
-          <div className="dropdown dropdown-end hidden lg:flex">
-            <label
-              tabIndex={0}
-              className="cursor-pointer border-2 border-blue-500 rounded-full hover:bg-slate-100 tooltip tooltip-left"
-              data-tip={user?.displayName}
-            >
-              <div className="w-10 h-10 p-0.5 ">
+      <div className="lg:flex justify-between gap-20 hidden">
+        
+        <div className="">
+        <div className="  items-end">
+          {user ? (
+            <div className="dropdown dropdown-end hidden lg:flex justify-end  tooltip tooltip-left" data-tip={user?.displayName}>
+              <label
+                tabIndex={0}
+                className="relative cursor-pointer border-2 border-blue-500 rounded-full overflow-hidden  hover:bg-slate-100  "
                 
-                {isValid ? (
-                  <img className="rounded-full" src={user?.photoURL} onError={handleError} />
-                ) : (
-                  <img src={profilePic}  />
-                )}
+              >
+                <div className=" w-10 h-10  flex justify-center items-center">
+                  {/* {isValid ? (
+                    <img
+                      className=" rounded-full object-cover absolute "
+                      src={user?.photoURL}
+                      onError={handleError}
+                    />
+                  ) : (
+                    <img className=" absolute" src={profilePic} />
+                  )} */}
+                   <img
+                      className=" w-10 h-10  rounded-full object-cover absolute "
+                      src={user?.photoURL}
+                      onError={handleError}
+                    />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <a className="justify-between">
+                    Profile
+                    <span className="badge">New</span>
+                  </a>
+                </li>
+                <li>
+                  <a>Settings</a>
+                </li>
+                <li>
+                  <Link to="/" onClick={handleLogOut}>
+                    Logout
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div className="flex justify-end">
+              <div>
+                <Link to="/login" className="btn-default mr-5">
+                  Login
+                </Link>
+                <Link to="/register" className="btn-default">
+                  Register
+                </Link>
               </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <Link to='/' onClick={handleLogOut}>Logout</Link>
-              </li>
-            </ul>
-          </div>
-        ) : (
-          <div>
-            <Link to="/login" className="btn-default">
-              Login
-            </Link>
-          </div>
-        )}
+            </div>
+          )}
+        </div>
+        </div>
       </div>
       <div className="lg:hidden">
         <button
@@ -149,8 +169,8 @@ useEffect(() => {
                 <div>
                   <Link
                     to="/"
-                    aria-label="HeroGadget"
-                    title="HeroGadget"
+                    aria-label="TastyTidbits"
+                    title="TastyTidbits"
                     className="inline-flex items-center"
                   >
                     <div className="flex items-center justify-center w-8 h-8 rounded-full bg-cyan-200">
@@ -178,32 +198,64 @@ useEffect(() => {
                 </div>
               </div>
               <nav>
-                <div className="dropdown dropdown-end flex mb-2">
-                  <label
-                    tabIndex={0}
-                    className="btn btn-ghost btn-circle avatar"
-                  >
-                    <div className="w-10 rounded-full">
-                      <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <div className=" mb-3">
+                  {user ? (
+                    <div className="dropdown dropdown-start ">
+                      <label
+                        tabIndex={0}
+                        className="relative cursor-pointer border-2 border-blue-500 rounded-full  hover:bg-slate-100 tooltip tooltip-right "
+                        data-tip={user?.displayName}
+                      >
+                        <div className="w-10 h-10  flex justify-center items-center">
+                          {/* {isValid ? (
+                            <img
+                              className=" rounded-full object-cover absolute "
+                              src={user?.photoURL}
+                              onError={handleError}
+                            />
+                          ) : (
+                            <img className=" absolute" src={profilePic} />
+                          )} */}
+                           <img
+                              className=" rounded-full object-cover absolute "
+                              src={user?.photoURL}
+                              onError={handleError}
+                            />
+                        </div>
+                      </label>
+                      <ul
+                        tabIndex={0}
+                        className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+                      >
+                        <li>
+                          <a className="justify-between">
+                            Profile
+                            <span className="badge">New</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a>Settings</a>
+                        </li>
+                        <li>
+                          <Link to="/" onClick={handleLogOut}>
+                            Logout
+                          </Link>
+                        </li>
+                      </ul>
                     </div>
-                  </label>
-                  <ul
-                    tabIndex={0}
-                    className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-                  >
-                    <li>
-                      <a className="justify-between">
-                        Profile
-                        <span className="badge">New</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>Settings</a>
-                    </li>
-                    <li>
-                      <a>Logout</a>
-                    </li>
-                  </ul>
+                  ) : (
+                    <div className="flex justify-start">
+                      <div className="flex flex-col gap-3">
+                        <Link to="/login" className="btn-default mr-5">
+                          Login
+                        </Link>
+
+                        <Link to="/register" className="btn-default">
+                          Register
+                        </Link>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <ul className="space-y-4 ">
                   <li>

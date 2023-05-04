@@ -23,14 +23,14 @@ const Footer = () => {
             <input
               type="submit"
               value="subscribe"
-              className="input w-3/4 max-w-xs text-black rounded-full text-center font-bold btn-default uppercase mt-4"
+              className="input w-3/4 max-w-xs text-black rounded-full text-center font-bold btn-default uppercase mt-4 cursor-pointer"
             />
           </div>
           <div className="flex mt-3 gap-8">
-            <FaTwitter className="border p-2 rounded-full w-8 h-8 hover:bg-amber-500" />
-            <FaFacebookF className="border p-2 rounded-full w-8 h-8 hover:bg-amber-500" />
-            <FaInstagram className="border p-2 rounded-full w-8 h-8 hover:bg-amber-500" />
-            <FaDribbble className="border p-2 rounded-full w-8 h-8 hover:bg-amber-500" />
+            <FaTwitter className="border p-2 rounded-full w-8 h-8 hover:bg-amber-500 cursor-pointer" />
+            <FaFacebookF className="border p-2 rounded-full w-8 h-8 hover:bg-amber-500 cursor-pointer" />
+            <FaInstagram className="border p-2 rounded-full w-8 h-8 hover:bg-amber-500 cursor-pointer" />
+            <FaDribbble className="border p-2 rounded-full w-8 h-8 hover:bg-amber-500 cursor-pointer" />
           </div>
         </div>
         <div>

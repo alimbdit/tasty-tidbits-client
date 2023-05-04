@@ -8,6 +8,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
+import Conditions from "../components/Conditions";
 
 const router = createBrowserRouter([
   {
@@ -18,17 +19,17 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        // loader: () => fetch('http://localhost:5000/chef')
+        // loader: () => fetch('https://tasty-tidbits-server-alimbdit.vercel.app/chef')
       },
       {
         path: 'recipe/:_id',
         element: <PrivateRoute><Recipes></Recipes></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/chef/${params._id}`)
+        loader: ({params}) => fetch(`https://tasty-tidbits-server-alimbdit.vercel.app/chef/${params._id}`)
       },
       {
         path: "/blog",
         element: <Blog></Blog>,
-        loader: () => fetch('http://localhost:5000/blog')
+        // loader: () => fetch('https://tasty-tidbits-server-alimbdit.vercel.app/blog')
       },
       {
         path: '/login',
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>
+      },
+      {
+        path: '/conditions',
+        element: <Conditions></Conditions>
       }
     ],
   },
