@@ -7,7 +7,7 @@
 #### Hosted in Firebase - [Tasty Tidbits](https://tasty-tidbits-client.web.app)
 ---
 ## Feature of the website
-* This web site has Home,  a simple Blog, Terms and conditions.
+* This web site has Home,  a simple Blog, Terms and conditions, Error Page.
 * The home is consists of a navbar, a banner, a section which show cooks info.
 * On clicking view items button  it route over a new route which shows a chef's detail info and their special recipes
 
