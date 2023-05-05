@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import swal from "sweetalert";
+import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { sendPasswordResetEmail, getAuth } from "firebase/auth";
 import app from "../../firebase/firebase.config";
 
@@ -16,6 +17,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const emailRef = useRef();
+  const [show, setShow] = useState(false);
 
   const sweetAlert = {
     title: "Check Your Email!",
@@ -156,15 +158,26 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
             <br />
-            <input
+           <div className="relative">
+           <input
               className="input rounded-full placeholder:text-gray-600 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7 mb-8 w-full"
-              type="password"
+              type={show ? "text" : "password"}
               name="password"
               placeholder="Password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            {
+                show?<FaRegEye
+                onClick={() => setShow(!show)}
+                class="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
+              />:<FaRegEyeSlash
+                onClick={() => setShow(!show)}
+                class="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
+              />
+              }
+           </div>
             <br />
 
             <div className="flex justify-between">

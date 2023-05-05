@@ -7,6 +7,7 @@ import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
 import swal from "sweetalert";
 import Terms from "../../components/TermsConditions/Terms";
+import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 
 const userPic = "https://i.ibb.co/s9VWqPN/user.png";
 
@@ -18,6 +19,7 @@ const Register = () => {
   const [name, setName] = useState();
   const [photoUrl, setPhotoUrl] = useState();
   const [accepted, setAccepted] = useState(false);
+  const [show, setShow] = useState(false);
 
   const sweetAlert = {
     title: "Registration Successful!",
@@ -204,22 +206,44 @@ const Register = () => {
               required
             />
             <br />
+            <div className="relative">
             <input
               onBlur={handlePasswordBlur}
               className="input rounded-full placeholder:text-gray-600 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7 mb-8 w-full"
-              type="password"
+              type={show ? "text" : "password"}
               name="password"
               placeholder="Password"
               required
             />
+            {
+                show?<FaRegEye
+                onClick={() => setShow(!show)}
+                class="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
+              />:<FaRegEyeSlash
+                onClick={() => setShow(!show)}
+                class="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
+              />
+              }
+            </div>
             <br />
-            <input
+          <div className="relative">
+          <input
               className="input rounded-full placeholder:text-gray-600 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7 mb-8 w-full"
-              type="password"
+              type={show ? "text" : "password"}
               name="confirmPassword"
               placeholder="confirm Password"
               required
             />
+              {
+                show?<FaRegEye
+                onClick={() => setShow(!show)}
+                class="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
+              />:<FaRegEyeSlash
+                onClick={() => setShow(!show)}
+                class="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
+              />
+              }
+          </div>
             <br />
             <div className="flex justify-between">
               <span>
