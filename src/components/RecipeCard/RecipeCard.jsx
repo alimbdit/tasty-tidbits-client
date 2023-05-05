@@ -3,6 +3,11 @@ import { FaStar, FaHeart } from "react-icons/fa";
 import toast from 'react-hot-toast';
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import {
+  LazyLoadImage,
+  trackWindowScroll,
+} from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const RecipeCard = ({ recipe }) => {
 
@@ -28,7 +33,10 @@ const RecipeCard = ({ recipe }) => {
     <div className="container">
       <div className="card lg:card-side  shadow-xl bg-red-200 bg-opacity-40">
         <figure className="lg:w-2/5">
-          <img className="w-full h-full" src={image_url} alt="recipe" />
+          <LazyLoadImage className="w-full h-full" src={image_url} alt="recipe" effect="blur"
+          delayMethod="debounce"
+          delayTime={500}
+          threshold={200} />
         </figure>
         <div className="card-body lg:w-3/5">
           <h2 className="card-title font-bold text-3xl mt-2 text-amber-800">

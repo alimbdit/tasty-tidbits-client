@@ -1,4 +1,9 @@
 import React from "react";
+import {
+  LazyLoadImage,
+  trackWindowScroll,
+} from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
@@ -18,15 +23,23 @@ const ReviewCard = ({ review }) => {
       <div className="card-body">
         <div className="flex justify-start items-center gap-5">
           <div className="mb-2">
-            <img
+            <LazyLoadImage
               className="rounded-full w-20"
               src={customer_photo}
               alt="customer_photo"
+              effect="blur"
+              delayMethod="throttle"
+              delayTime={500}
+              threshold={200}
             />
           </div>
           <div>
-            <h2 className="font-bold text-xl text-amber-800">{customer_name}</h2>
-            <p className="font-medium  text-amber-500">{customer_designation}</p>
+            <h2 className="font-bold text-xl text-amber-800">
+              {customer_name}
+            </h2>
+            <p className="font-medium  text-amber-500">
+              {customer_designation}
+            </p>
           </div>
         </div>
 

@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { ClipLoader } from "react-spinners";
 import PDFFile from './FDFFile'
-import { Page, Text, Image, Document, StyleSheet, PDFDownloadLink } from "@react-pdf/renderer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 const Blog = () => {
   // const blogs = useLoaderData();
