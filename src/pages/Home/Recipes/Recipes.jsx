@@ -12,10 +12,10 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 const Recipes = () => {
   const { _id } = useParams();
 
-  // const { chefData } = useContext(AuthContext);
+  const { chefData } = useContext(AuthContext);
 
-  const recipe = useLoaderData();
-  // const targetChef = chefData.find((chef) => chef.id == _id);
+  // const recipe = useLoaderData();
+  const targetChef = chefData.find((chef) => chef.id == _id);
   // console.log(recipe);
 
   const {
@@ -26,7 +26,7 @@ const Recipes = () => {
     recipes,
     likes,
     short_description,
-  } = recipe;
+  } = targetChef;
 
   return (
     <>

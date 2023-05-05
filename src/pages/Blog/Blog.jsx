@@ -19,7 +19,7 @@ const Blog = () => {
           color={"#FFBF00"}
           loading={loading}
           // cssOverride={override}
-          size={150}
+          size={100}
           aria-label="Loading Spinner"
           data-testid="loader"
         />

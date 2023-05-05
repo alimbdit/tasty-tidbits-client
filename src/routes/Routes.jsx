@@ -10,6 +10,7 @@ import Register from "../pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import Conditions from "../components/TermsConditions/Conditions";
 import About from "../pages/About/About";
+import Contact from "../pages/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -29,10 +30,10 @@ const router = createBrowserRouter([
             <Recipes></Recipes>
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(
-            `https://tasty-tidbits-server-alimbdit.vercel.app/chef/${params._id}`
-          ),
+        // loader: ({ params }) =>
+        //   fetch(
+        //     `https://tasty-tidbits-server-alimbdit.vercel.app/chef/${params._id}`
+        //   ),
       },
       {
         path: "/blog",
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About></About>,
+      },
+      {
+        path:'/contact',
+        element: <Contact></Contact>
       },
       // {
       //   path: '/conditions',

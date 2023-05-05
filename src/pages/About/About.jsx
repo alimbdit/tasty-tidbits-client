@@ -1,6 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ClipLoader } from 'react-spinners';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const About = () => {
+    const { loading } = useContext(AuthContext);
+
+  if (loading) {
+    // return <Loader />
+    return (
+      <div className="flex justify-center my-20">
+        <ClipLoader
+          color={"#FFBF00"}
+          loading={loading}
+          // cssOverride={override}
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
+  }
+
     return (
         <div className="bg-white">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
