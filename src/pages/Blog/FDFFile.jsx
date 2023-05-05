@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     marginBottom:20,
   },
   text: {
-    marginBottom: 8,
+    marginBottom: 18,
     fontSize: 14,
     textAlign: "justify",
     fontWeight: 500,

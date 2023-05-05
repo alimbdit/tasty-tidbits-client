@@ -43,22 +43,25 @@ const Login = () => {
       })
       .catch((error) => {
         console.log("Error", error.message);
-        setLoginError(error?.message);
+        
+        const errorText = error?.code.split("/");
+        setLoginError(errorText[1].split('-').join(' '));
       });
   };
 
   const handleGithubLogin = () => {
     gitHubLogin()
-    .then((result) => {
-      const loggedInUser = result.user;
-      console.log(loggedInUser);
-      setUser(loggedInUser);
-      navigate(from, { replace: true });
-    })
-    .catch((error) => {
-      console.log("Error", error.message);
-      setLoginError(error?.message);
-    });
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        setUser(loggedInUser);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log("Error", error.message);
+        const errorText = error?.code.split("/");
+        setLoginError(errorText[1].split("-").join(" "));
+      });
   };
 
   const handleLogin = (event) => {
@@ -72,25 +75,19 @@ const Login = () => {
     if (!/(?=.*[A-Z])/.test(password)) {
       setLoginError("please enter at least one upper case");
       return;
-    }
-     else if (!/(?=.*?[a-z])/.test(password)) {
+    } else if (!/(?=.*?[a-z])/.test(password)) {
       setLoginError("please enter at least one lower case");
       return;
-    } 
-     else if (!/(?=.*\d)/.test(password)) {
+    } else if (!/(?=.*\d)/.test(password)) {
       setLoginError("please enter at least one digit");
       return;
-    } 
-    else if (!/(?=.*?[#?!@$%^&*-])/.test(password)) {
+    } else if (!/(?=.*?[#?!@$%^&*-])/.test(password)) {
       setLoginError("please enter at least one special character");
       return;
-    }
-    else if (!/(?=.{6,})/.test(password)) {
+    } else if (!/(?=.{6,})/.test(password)) {
       setLoginError("please enter at least six character");
       return;
     }
-     
-   
 
     if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
       setLoginError("please enter valid email");
@@ -112,7 +109,7 @@ const Login = () => {
         console.log(error.message, error.code);
         // setLoginError(error?.message?.Firebase);
         const errorText = error?.code.split("/");
-        setLoginError(errorText[1]);
+        setLoginError(errorText[1].split("-").join(" "));
       });
 
     // event.target.reset();
@@ -232,7 +229,10 @@ const Login = () => {
               Continue with Google
             </span>
           </button>
-          <button onClick={handleGithubLogin} className=" w-full  justify-center gap-2 text-center border-2 border-gray-500 text-gray-900 py-2 px-4 rounded-full flex items-center space-x-2 hover:bg-red-100 hover:bg-opacity-50 focus:outline-none mb-2 ">
+          <button
+            onClick={handleGithubLogin}
+            className=" w-full  justify-center gap-2 text-center border-2 border-gray-500 text-gray-900 py-2 px-4 rounded-full flex items-center space-x-2 hover:bg-red-100 hover:bg-opacity-50 focus:outline-none mb-2 "
+          >
             <FaGithub className="text-gray-700 font-bold text-2xl"></FaGithub>
             <span className="text-center text-amber-700  text-xl font-medium">
               Continue with GitHub

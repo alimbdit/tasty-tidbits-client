@@ -99,7 +99,7 @@ const Register = () => {
         console.error(error.message);
         const errorText = error?.code.split("/");
         // setRegisterError(error.message);
-        setRegisterError(errorText[1]);
+        setRegisterError(errorText[1].split('-').join(' '));
         // ..
       });
     // event.target.reset();
@@ -131,7 +131,7 @@ const Register = () => {
         // ...
         const errorText = error?.code.split("/");
         // setRegisterError(error.message);
-        setRegisterError(errorText[1]);
+        setRegisterError(errorText[1].split('-').join(' '));
       });
   };
 
@@ -146,7 +146,7 @@ const Register = () => {
       .catch((error) => {
         const errorText = error?.code.split("/");
         // setRegisterError(error.message);
-        setRegisterError(errorText[1]);
+        setRegisterError(errorText[1].split('-').join(' '));
       });
   };
 
@@ -161,7 +161,7 @@ const Register = () => {
       .catch((error) => {
         const errorText = error?.code.split("/");
         // setRegisterError(error.message);
-        setRegisterError(errorText[1]);
+        setRegisterError(errorText[1].split('-').join(' '));
       });
   };
 

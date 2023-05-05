@@ -31,7 +31,7 @@ const Blog = () => {
     
     <div className="mx-5 lg:mx-10 mb-10 container">
       <div className="text-center">
-        <PDFDownloadLink document={<PDFFile/>} filename="FORM">
+        <PDFDownloadLink document={<PDFFile/>} fileName="Simple-Question-Answer.pdf">
           
               <button className="btn-black">Download</button>
            
