@@ -1,6 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Conditions = () => {
+
+  const navigate = useNavigate()
+
   return (
     <div className="bg-opacity-25 bg-red-100">
       <div className="container">
@@ -67,6 +71,7 @@ const Conditions = () => {
             the website is subject to the laws of [insert country or state].
           </li>
         </ul>
+        <button onClick={() => navigate(-1)}>Accept</button>
       </div>
     </div>
   );

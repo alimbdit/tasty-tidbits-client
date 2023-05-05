@@ -8,7 +8,8 @@ import ErrorPage from "../pages/ErrorPage";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
-import Conditions from "../components/Conditions";
+import Conditions from "../components/TermsConditions/Conditions";
+
 
 const router = createBrowserRouter([
   {
@@ -39,10 +40,10 @@ const router = createBrowserRouter([
         path: '/register',
         element: <Register></Register>
       },
-      {
-        path: '/conditions',
-        element: <Conditions></Conditions>
-      }
+      // {
+      //   path: '/conditions',
+        // element: <Conditions></Conditions>
+      // }
     ],
   },
 ]);

@@ -6,6 +6,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
 import swal from "sweetalert";
+import Terms from "../../components/TermsConditions/Terms";
 
 const userPic = "https://i.ibb.co/s9VWqPN/user.png";
 
@@ -50,25 +51,19 @@ const Register = () => {
     if (!/(?=.*[A-Z])/.test(password)) {
       setRegisterError("please enter at least one upper case");
       return;
-    }
-     else if (!/(?=.*?[a-z])/.test(password)) {
+    } else if (!/(?=.*?[a-z])/.test(password)) {
       setRegisterError("please enter at least one lower case");
       return;
-    } 
-     else if (!/(?=.*\d)/.test(password)) {
+    } else if (!/(?=.*\d)/.test(password)) {
       setRegisterError("please enter at least one digit");
       return;
-    } 
-    else if (!/(?=.*?[#?!@$%^&*-])/.test(password)) {
+    } else if (!/(?=.*?[#?!@$%^&*-])/.test(password)) {
       setRegisterError("please enter at least one special character");
       return;
-    }
-    else if (!/(?=.{6,})/.test(password)) {
+    } else if (!/(?=.{6,})/.test(password)) {
       setRegisterError("please enter at least six character");
       return;
     }
-     
-   
 
     if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
       setRegisterError("please enter valid email");
@@ -99,7 +94,7 @@ const Register = () => {
         console.error(error.message);
         const errorText = error?.code.split("/");
         // setRegisterError(error.message);
-        setRegisterError(errorText[1].split('-').join(' '));
+        setRegisterError(errorText[1].split("-").join(" "));
         // ..
       });
     // event.target.reset();
@@ -116,7 +111,7 @@ const Register = () => {
   };
 
   const updateUserProfile = (user, name, photo) => {
-    setLoading(true)
+    setLoading(true);
     updateProfile(user, {
       displayName: name,
       photoURL: photo,
@@ -131,7 +126,7 @@ const Register = () => {
         // ...
         const errorText = error?.code.split("/");
         // setRegisterError(error.message);
-        setRegisterError(errorText[1].split('-').join(' '));
+        setRegisterError(errorText[1].split("-").join(" "));
       });
   };
 
@@ -146,7 +141,7 @@ const Register = () => {
       .catch((error) => {
         const errorText = error?.code.split("/");
         // setRegisterError(error.message);
-        setRegisterError(errorText[1].split('-').join(' '));
+        setRegisterError(errorText[1].split("-").join(" "));
       });
   };
 
@@ -161,7 +156,7 @@ const Register = () => {
       .catch((error) => {
         const errorText = error?.code.split("/");
         // setRegisterError(error.message);
-        setRegisterError(errorText[1].split('-').join(' '));
+        setRegisterError(errorText[1].split("-").join(" "));
       });
   };
 
@@ -237,9 +232,15 @@ const Register = () => {
                 <label htmlFor="condition">
                   {" "}
                   Accepts{" "}
-                  <Link className="text-amber-500 underline" to="/conditions">
+                  {/* <Link className="text-amber-500 underline" to="/conditions">
                     Terms and conditions
-                  </Link>
+                  </Link> */}
+                  <label
+                    htmlFor="terms-and-conditions"
+                    className="text-amber-500 underline cursor-pointer"
+                  >
+                    Terms and conditions
+                  </label>
                 </label>
               </span>
             </div>
@@ -247,6 +248,15 @@ const Register = () => {
             <div className="mt-5">
               <p className="text-red-500">{registerError}</p>
               <p className="text-green-500">{success}</p>
+            </div>
+
+            <div>
+              <input
+                type="checkbox"
+                id="terms-and-conditions"
+                className="modal-toggle"
+              />
+              <Terms></Terms>
             </div>
 
             <input

@@ -19,7 +19,7 @@ const FollowCard = ({ recipe }) => {
             alt="recipe image"
             className="object-cover w-64 h-56 lg:h-64"
             effect="blur"
-              delayMethod="throttle"
+              delayMethod="debounce"
               delayTime={500}
               threshold={200}
           />

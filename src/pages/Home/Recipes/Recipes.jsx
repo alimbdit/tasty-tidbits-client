@@ -62,7 +62,7 @@ const Recipes = () => {
                 src={chef_image}
                 alt="chef"
                 effect="blur"
-                delayMethod="throttle"
+                delayMethod="debounce"
                 delayTime={500}
                 threshold={200}
               />

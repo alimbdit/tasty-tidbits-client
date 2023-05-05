@@ -34,7 +34,7 @@ const RecipeCard = ({ recipe }) => {
       <div className="card lg:card-side  shadow-xl bg-red-200 bg-opacity-40">
         <figure className="lg:w-2/5">
           <LazyLoadImage className="w-full h-full" src={image_url} alt="recipe" effect="blur"
-          delayMethod="debounce"
+          delayMethod="throttle"
           delayTime={500}
           threshold={200} />
         </figure>
