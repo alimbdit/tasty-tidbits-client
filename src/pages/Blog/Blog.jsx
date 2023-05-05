@@ -8,8 +8,8 @@ import PDFFile from './FDFFile'
 import { PDFDownloadLink } from "@react-pdf/renderer";
 
 const Blog = () => {
-  // const blogs = useLoaderData();
-  const { blogs, loading } = useContext(AuthContext);
+  const blogs = useLoaderData();
+  const { loading } = useContext(AuthContext);
 
   if (loading) {
     // return <Loader />

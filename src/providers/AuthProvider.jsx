@@ -12,7 +12,7 @@ const AuthProvider = ({children}) => {
     const [dataLoading, setDataLoading] = useState(true);
 
     const [chefData, setChefData] = useState([]);
-    const [blogs, setBlogs] = useState([]);
+    // const [blogs, setBlogs] = useState([]);
     const [recipes, setRecipes] = useState([]);
     const [reviews, setReviews] = useState([]);
 
@@ -28,10 +28,10 @@ const AuthProvider = ({children}) => {
         setDataLoading(false)
     },[])
 
-    useEffect(() => {
-      fetch("https://tasty-tidbits-server-alimbdit.vercel.app/blog").then(res => res.json()).then(data => setBlogs(data))
-      setDataLoading(false)
-    } ,[])
+    // useEffect(() => {
+    //   fetch("https://tasty-tidbits-server-alimbdit.vercel.app/blog").then(res => res.json()).then(data => setBlogs(data))
+    //   setDataLoading(false)
+    // } ,[])
 
     useEffect(() => {
       fetch("https://tasty-tidbits-server-alimbdit.vercel.app/reviews")
@@ -110,7 +110,7 @@ const AuthProvider = ({children}) => {
 //       }
     
 
-    const AuthInfo = {user, chefData, googleLogin, gitHubLogin, loading, setLoading, logIn, createUser, setUser, resetPassword, logOut, blogs, reviews, recipes,dataLoading  };
+    const AuthInfo = {user, chefData, googleLogin, gitHubLogin, loading, setLoading, logIn, createUser, setUser, resetPassword, logOut, reviews, recipes,dataLoading  };
     return (
         <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>
     );

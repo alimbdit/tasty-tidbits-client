@@ -9,7 +9,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import Conditions from "../components/TermsConditions/Conditions";
-
+import About from "../pages/About/About";
 
 const router = createBrowserRouter([
   {
@@ -23,26 +23,38 @@ const router = createBrowserRouter([
         // loader: () => fetch('https://tasty-tidbits-server-alimbdit.vercel.app/chef')
       },
       {
-        path: 'recipe/:_id',
-        element: <PrivateRoute><Recipes></Recipes></PrivateRoute>,
-        loader: ({params}) => fetch(`https://tasty-tidbits-server-alimbdit.vercel.app/chef/${params._id}`)
+        path: "recipe/:_id",
+        element: (
+          <PrivateRoute>
+            <Recipes></Recipes>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://tasty-tidbits-server-alimbdit.vercel.app/chef/${params._id}`
+          ),
       },
       {
         path: "/blog",
         element: <Blog></Blog>,
-        // loader: () => fetch('https://tasty-tidbits-server-alimbdit.vercel.app/blog')
+        loader: () =>
+          fetch("https://tasty-tidbits-server-alimbdit.vercel.app/blog"),
       },
       {
-        path: '/login',
-        element: <Login></Login>
+        path: "/login",
+        element: <Login></Login>,
       },
       {
-        path: '/register',
-        element: <Register></Register>
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
       },
       // {
       //   path: '/conditions',
-        // element: <Conditions></Conditions>
+      // element: <Conditions></Conditions>
       // }
     ],
   },
