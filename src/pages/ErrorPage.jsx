@@ -5,7 +5,7 @@ import pageError from '../../public/page-error.json'
 
 const ErrorPage = () => {
     const { error, status } = useRouteError()
-    console.log(error)
+    // console.log(error)
     return (
         <section className='flex items-center h-screen p-16 bg-gray-100 text-gray-900'>
       <div className='container flex flex-col items-center justify-center px-5 mx-auto my-8'>
@@ -19,7 +19,7 @@ const ErrorPage = () => {
           </p>
           <Link
             to='/'
-            className='px-8 py-3 font-semibold rounded-full bg-amber-300 text-gray-900'
+            className='px-8 py-3 font-semibold btn-default'
           >
             Back to homepage
           </Link>

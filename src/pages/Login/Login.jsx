@@ -30,7 +30,7 @@ const Login = () => {
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
-  console.log(from);
+  // console.log(from);
 
   const { googleLogin, gitHubLogin, logIn, setUser, resetPassword } =
     useContext(AuthContext);
@@ -39,12 +39,12 @@ const Login = () => {
     googleLogin()
       .then((result) => {
         const loggedInUser = result.user;
-        console.log(loggedInUser);
+        // console.log(loggedInUser);
         setUser(loggedInUser);
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.log("Error", error.message);
+        // console.log("Error", error.message);
         
         const errorText = error?.code.split("/");
         setLoginError(errorText[1].split('-').join(' '));
@@ -55,12 +55,12 @@ const Login = () => {
     gitHubLogin()
       .then((result) => {
         const loggedInUser = result.user;
-        console.log(loggedInUser);
+        // console.log(loggedInUser);
         setUser(loggedInUser);
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.log("Error", error.message);
+        // console.log("Error", error.message);
         const errorText = error?.code.split("/");
         setLoginError(errorText[1].split("-").join(" "));
       });
@@ -101,21 +101,21 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
 
-        console.log(loggedUser);
+        // console.log(loggedUser);
         setUser(loggedUser);
         setSuccess("Login successful");
         setLoginError("");
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.log(error.message, error.code);
+        // console.log(error.message, error.code);
         // setLoginError(error?.message?.Firebase);
         const errorText = error?.code.split("/");
         setLoginError(errorText[1].split("-").join(" "));
       });
 
     // event.target.reset();
-    console.log(email, password);
+    // console.log(email, password);
   };
 
   const handleResetPassword = () => {
@@ -124,7 +124,7 @@ const Login = () => {
       toast.error("Please provide an valid email! 🔥");
       return;
     }
-    console.log(email);
+    // console.log(email);
     // resetPassword(email)
     sendPasswordResetEmail(auth, email)
       .then(() => {
@@ -132,7 +132,7 @@ const Login = () => {
         // ..
         alert("Check your email to reset password");
         // swal(sweetAlert);
-        console.log("send email");
+        // console.log("send email");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -161,22 +161,23 @@ const Login = () => {
            <div className="relative">
            <input
               className="input rounded-full placeholder:text-gray-600 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7 mb-8 w-full"
-              type={show ? "text" : "password"}
+              // type={show ? "text" : "password"}
+              type="password"
               name="password"
               placeholder="Password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {
+            {/* {
                 show?<FaRegEye
                 onClick={() => setShow(!show)}
-                class="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
+                className="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
               />:<FaRegEyeSlash
                 onClick={() => setShow(!show)}
-                class="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
+                className="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
               />
-              }
+              } */}
            </div>
             <br />
 

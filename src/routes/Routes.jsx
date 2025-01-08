@@ -30,10 +30,10 @@ const router = createBrowserRouter([
             <Recipes></Recipes>
           </PrivateRoute>
         ),
-        // loader: ({ params }) =>
-        //   fetch(
-        //     `https://tasty-tidbits-server-alimbdit.vercel.app/chef/${params._id}`
-        //   ),
+        loader: ({ params }) =>
+          fetch(
+            `https://tasty-tidbits-server-alimbdit.vercel.app/chef/${params._id}`
+          ),
       },
       {
         path: "/blog",

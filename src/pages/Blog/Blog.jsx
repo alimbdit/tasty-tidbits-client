@@ -6,6 +6,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { ClipLoader } from "react-spinners";
 import PDFFile from './FDFFile'
 import { PDFDownloadLink } from "@react-pdf/renderer";
+import Loader from "../../components/Loader";
 
 const Blog = () => {
   const blogs = useLoaderData();
@@ -24,6 +25,7 @@ const Blog = () => {
           data-testid="loader"
         />
       </div>
+      // <Loader></Loader>
     );
   }
 

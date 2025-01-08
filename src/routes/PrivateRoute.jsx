@@ -9,7 +9,7 @@ const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
 
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   if (loading) {
     // return <Loader />
@@ -17,7 +17,7 @@ const PrivateRoute = ({ children }) => {
       <div className="flex justify-center my-20">
         <ClipLoader
           color={"#FFBF00"}
-          loading={loading}
+          // loading={loading}
           // cssOverride={override}
           size={100}
           aria-label="Loading Spinner"

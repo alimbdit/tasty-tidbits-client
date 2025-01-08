@@ -19,7 +19,7 @@ const ReviewCard = ({ review }) => {
   } = review;
 
   return (
-    <div className="card w-full bg-base-100 shadow-xl">
+    <div className="card w-full bg-base-100 dark:bg-white shadow-xl">
       <div className="card-body">
         <div className="flex justify-start items-center gap-5">
           <div className="mb-2">

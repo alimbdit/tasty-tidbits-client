@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, NavLink, useNavigation } from "react-router-dom";
+import { Link, NavLink, useNavigate, useNavigation } from "react-router-dom";
 import chef from "../../../../public/chef-logo.svg";
 import { AuthContext } from "../../../providers/AuthProvider";
 import profilePic from "../../../assets/user.png";
@@ -10,9 +10,10 @@ const Navbar = () => {
   const [userPic, setUserPic] = useState();
   const [userState, setUserState] = useState(false);
   const navigation = useNavigation();
-  console.log(navigation.state);
+  // console.log(navigation.state);
 
   const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate()
   // const {displayName, photoURL} = user;
   useEffect(() => {
     setUserState(!userState);
@@ -26,9 +27,9 @@ const Navbar = () => {
     logOut()
       .then()
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
-    console.log(user);
+    // console.log(user);
   };
 
   return (
@@ -37,7 +38,7 @@ const Navbar = () => {
         <Link to="/">
           <span className="flex gap-4">
             <img className="w-10" src={chef} alt="" />
-            <h1 className="lg:font-extrabold lg:text-4xl  font-bold text-2xl">
+            <h1 className="lg:font-extrabold lg:text-4xl  font-bold text-2xl dark:text-white">
               Tasty <span className="text-amber-500">Tidbits</span>
             </h1>
           </span>

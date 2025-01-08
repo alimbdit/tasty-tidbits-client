@@ -21,6 +21,8 @@ const AuthProvider = ({children}) => {
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
+   
+
     useEffect(()=>{
         fetch('https://tasty-tidbits-server-alimbdit.vercel.app/chef')
         .then(res => res.json())
@@ -58,6 +60,7 @@ const AuthProvider = ({children}) => {
       
 
     const googleLogin = () => {
+      // setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
     const gitHubLogin = () => {
@@ -80,7 +83,7 @@ const AuthProvider = ({children}) => {
   };
 
   const resetPassword = (email) => {
-    setLoading(true)
+    // setLoading(true)
     return sendPasswordResetEmail(auth, email)
   };
 
@@ -88,29 +91,28 @@ const AuthProvider = ({children}) => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (loggedUser) => {
-      console.log('logged in user inside auth state observer', loggedUser);
-      
-        setUser(loggedUser);
-      
-     
+      // console.log('logged in user inside auth state observer', loggedUser);
       setLoading(false)
+      
+      // setDataLoading(false)
+      setUser(loggedUser);
+      console.log(loading, user)
     });
-
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [loading]);
 
-//   const updateUserProfile = ( name, photo) => {
-//     console.log(typeof(name), typeof(photo), auth.currentUser)
-//         setLoading(true)
-//         return updateProfile(auth.currentUser, {
-//             displayName: name, photoURL: photo,
-//           }); 
-//       }
+  // const updateUserProfile = ( name, photo) => {
+  //   console.log(typeof(name), typeof(photo), auth.currentUser)
+  //       setLoading(true)
+  //       return updateProfile(auth.currentUser, {
+  //           displayName: name, photoURL: photo,
+  //         }); 
+  //     }
     
 
-    const AuthInfo = {user, chefData, googleLogin, gitHubLogin, loading, setLoading, logIn, createUser, setUser, resetPassword, logOut, reviews, recipes,dataLoading  };
+    const AuthInfo = {user, chefData, googleLogin, gitHubLogin, loading, setLoading, logIn, createUser, setUser, resetPassword, logOut, reviews, recipes,dataLoading,auth   };
     return (
         <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>
     );

@@ -12,7 +12,7 @@ const SingleChef = ({ chef }) => {
   const { id, chef_name, chef_image, experience, recipes, likes } = chef;
   // console.log(chef);
   return (
-    <div className="card w-full shadow-xl bg-red-100 bg-opacity-25">
+    <div className="card w-full shadow-xl bg-red-100 bg-opacity-25 dark:bg-opacity-90 ">
       <figure className="p-5 ">
         <LazyLoadImage
           className="rounded-2xl"
@@ -25,8 +25,8 @@ const SingleChef = ({ chef }) => {
         />
       </figure>
       <div className="card-body pt-0">
-        <h2 className="card-title text-2xl font-bold">{chef_name}</h2>
-        <p className="text-lg font-medium text-gray-600">
+        <h2 className="card-title dark:text-gray-800 text-2xl font-bold">{chef_name}</h2>
+        <p className="text-lg font-medium text-gray-600 dark:text-gray-700">
           Experience: <span className="font-normal">{experience}</span>
         </p>
         <p className="text-lg font-medium text-gray-600">

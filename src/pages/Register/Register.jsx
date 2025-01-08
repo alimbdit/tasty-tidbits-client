@@ -20,6 +20,7 @@ const Register = () => {
   const [photoUrl, setPhotoUrl] = useState();
   const [accepted, setAccepted] = useState(false);
   const [show, setShow] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const sweetAlert = {
     title: "Registration Successful!",
@@ -35,7 +36,7 @@ const Register = () => {
 
   // const from = location.state?.from?.pathname || "/";
 
-  console.log(from);
+  // console.log(from);
   const { googleLogin, gitHubLogin, createUser, setLoading } =
     useContext(AuthContext);
 
@@ -77,13 +78,13 @@ const Register = () => {
       return;
     }
 
-    console.log(email, password);
+    // console.log(email, password);
     // event.target.reset();
     createUser(email, password)
       .then((result) => {
         const loggedUser = result.user;
-
-        console.log(loggedUser);
+        // setLoading(true);
+        // console.log(loggedUser);
         setRegisterError(" ");
         setSuccess("Registration successful");
         toast.success("Registration successful! 👍");
@@ -99,6 +100,8 @@ const Register = () => {
         setRegisterError(errorText[1].split("-").join(" "));
         // ..
       });
+
+      // updateUserProfile(name, photo).then(() => {console.log('profile updated')}).catch(error => {console.log(error)})
     // event.target.reset();
 
     // console.log(name, photo)
@@ -112,37 +115,36 @@ const Register = () => {
     // })
   };
 
-  const updateUserProfile = (user, name, photo) => {
-    setLoading(true);
+  const updateUserProfile =(user, name, photo) => {
     updateProfile(user, {
-      displayName: name,
-      photoURL: photo,
+                displayName: name, photoURL: photo,
+              })
+    .then(() => {
+      console.log('profile updated')
     })
-      .then(() => {
-        // Profile updated!
-        // ...
-        console.log("user profile updated");
-      })
-      .catch((error) => {
-        // An error occurred
-        // ...
-        const errorText = error?.code.split("/");
-        // setRegisterError(error.message);
-        setRegisterError(errorText[1].split("-").join(" "));
-      });
-  };
+    .catch(error => {
+      console.log(error)
+      setRegisterError(error.message)
+    })
+  }
+  // .then(() => {
+  //   console.log('profile updated')
+  // })
+  // .catch(error => {
+  //   console.log(error)
+  //   setRegisterError(error.message)
+  // })
+
 
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {
         const loggedInUser = result.user;
-        console.log(loggedInUser);
-        // setUser(loggedInUser);
+        setUser(loggedInUser);
         navigate(from || "/");
       })
       .catch((error) => {
         const errorText = error?.code.split("/");
-        // setRegisterError(error.message);
         setRegisterError(errorText[1].split("-").join(" "));
       });
   };
@@ -151,7 +153,6 @@ const Register = () => {
     gitHubLogin()
       .then((result) => {
         const loggedInUser = result.user;
-        console.log(loggedInUser);
         // setUser(loggedInUser);
         navigate(from || "/");
       })
@@ -210,39 +211,41 @@ const Register = () => {
             <input
               onBlur={handlePasswordBlur}
               className="input rounded-full placeholder:text-gray-600 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7 mb-8 w-full"
-              type={show ? "text" : "password"}
+              // type={show ? "text" : "password"}
+              type='password'
               name="password"
               placeholder="Password"
               required
             />
-            {
+            {/* {
                 show?<FaRegEye
                 onClick={() => setShow(!show)}
-                class="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
+                className="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
               />:<FaRegEyeSlash
                 onClick={() => setShow(!show)}
-                class="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
+                className="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
               />
-              }
+              } */}
             </div>
-            <br />
+           
           <div className="relative">
           <input
               className="input rounded-full placeholder:text-gray-600 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7 mb-8 w-full"
-              type={show ? "text" : "password"}
+              // type={showConfirm ? "text" : "password"}
+              type="password"
               name="confirmPassword"
               placeholder="confirm Password"
               required
             />
-              {
-                show?<FaRegEye
-                onClick={() => setShow(!show)}
-                class="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
+              {/* {
+                showConfirm?<FaRegEye
+                onClick={() => setShowConfirm(!showConfirm)}
+                className="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
               />:<FaRegEyeSlash
-                onClick={() => setShow(!show)}
-                class="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
+                onClick={() => setShowConfirm(!showConfirm)}
+                className="h-6 w-6 text-gray-800 cursor-pointer absolute  top-[13px] right-5"
               />
-              }
+              } */}
           </div>
             <br />
             <div className="flex justify-between">
