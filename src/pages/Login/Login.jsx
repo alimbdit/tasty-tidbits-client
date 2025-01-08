@@ -145,10 +145,10 @@ const Login = () => {
     <>
       <div className="my-16">
         <div className="lg:mx-auto mx-5 lg:w-1/3 px-7 lg:px-12 py-9 border bg-red-100 bg-opacity-25 border-red-400 rounded-xl mb-6">
-          <h1 className="text-2xl font-bold mb-10">Login</h1>
+          <h1 className="text-2xl dark:text-white font-bold mb-10">Login</h1>
           <form onSubmit={handleLogin} action="">
             <input
-              className="input  rounded-full placeholder:text-gray-600 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7 mb-8 w-full"
+              className="input  rounded-full placeholder:text-gray-600 dark:text-white dark:placeholder:text-gray-300 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7 mb-8 w-full"
               ref={emailRef}
               type="email"
               name="email"
@@ -160,7 +160,7 @@ const Login = () => {
             <br />
            <div className="relative">
            <input
-              className="input rounded-full placeholder:text-gray-600 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7 mb-8 w-full"
+              className="input rounded-full placeholder:text-gray-600 dark:text-white dark:placeholder:text-gray-300 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7 mb-8 w-full"
               // type={show ? "text" : "password"}
               type="password"
               name="password"
@@ -184,12 +184,12 @@ const Login = () => {
             <div className="flex justify-between">
               <span>
                 <input type="checkbox" id="remember" value="remember" />
-                <label htmlFor="remember"> Remember Me</label>
+                <label htmlFor="remember" className="dark:text-white"> Remember Me</label>
               </span>
 
               <button
                 onClick={handleResetPassword}
-                className="text-amber-500 underline"
+                className="text-amber-500 dark:text-amber-200 underline"
               >
                 Forgot Password
               </button>
@@ -197,10 +197,10 @@ const Login = () => {
 
             <div className="mt-5">
               {loginError && (
-                <span className="text-red-500 text-lg ">{loginError}</span>
+                <span className="text-red-500 dark:text-red-300 text-lg ">{loginError}</span>
               )}
               {success && (
-                <span className="text-green-500 text-lg ">{success}</span>
+                <span className="text-green-500 dark:text-green-300 text-lg ">{success}</span>
               )}
             </div>
 
@@ -210,10 +210,10 @@ const Login = () => {
               value="Login"
             ></input>
 
-            <p className="font-medium mt-4">
+            <p className="font-medium mt-4 dark:text-gray-200">
               Don&apos;t have an account?{" "}
               <Link
-                className="text-amber-500 underline"
+                className="text-amber-500 dark:text-amber-200 underline"
                 to="/register"
                 state={{ from: location.state }}
               >
@@ -226,29 +226,30 @@ const Login = () => {
         <div className="mb-5 mx-5 lg:mx-auto lg:w-1/4 ">
           <div className="text-container mb-5">
             <hr className="left-line" />
-            <span className="">Or</span>
+            <span className="dark:text-white">Or</span>
             <hr className="right-line" />
           </div>
 
           <button
             onClick={handleGoogleLogin}
-            className=" w-full  justify-center gap-2 text-center border-2 border-gray-500 text-gray-900 py-2 px-4 rounded-full flex items-center space-x-2 hover:bg-red-100 hover:bg-opacity-50 focus:outline-none mb-2 "
+            className=" w-full  justify-center gap-2 text-center border-2 border-gray-500 text-gray-900 py-2 px-4 rounded-full flex items-center space-x-2 hover:bg-red-100 hover:bg-opacity-50 dark:hover:bg-opacity-20  focus:outline-none mb-2 "
           >
-            <img
+            {/* <img
               className="w-6"
               src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
               alt="Google icon"
-            />
-            <span className="text-center text-amber-700  text-xl font-medium">
+            /> */}
+            <FaGoogle className="text-gray-700 dark:text-white font-bold text-2xl" />
+            <span className="text-center text-amber-700 dark:text-amber-400 dark:hover:text-amber-500 text-xl font-medium">
               Continue with Google
             </span>
           </button>
           <button
             onClick={handleGithubLogin}
-            className=" w-full  justify-center gap-2 text-center border-2 border-gray-500 text-gray-900 py-2 px-4 rounded-full flex items-center space-x-2 hover:bg-red-100 hover:bg-opacity-50 focus:outline-none mb-2 "
+            className=" w-full  justify-center gap-2 text-center border-2 border-gray-500 text-gray-900 py-2 px-4 rounded-full flex items-center space-x-2 hover:bg-red-100 hover:bg-opacity-50 dark:hover:bg-opacity-20 focus:outline-none mb-2 "
           >
-            <FaGithub className="text-gray-700 font-bold text-2xl"></FaGithub>
-            <span className="text-center text-amber-700  text-xl font-medium">
+            <FaGithub className="text-gray-700 dark:text-white font-bold text-2xl"></FaGithub>
+            <span className="text-center text-amber-700 dark:text-amber-400 dark:hover:text-amber-500 text-xl font-medium">
               Continue with GitHub
             </span>
           </button>

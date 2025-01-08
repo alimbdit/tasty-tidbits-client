@@ -7,7 +7,7 @@ const ErrorPage = () => {
     const { error, status } = useRouteError()
     // console.log(error)
     return (
-        <section className='flex items-center h-screen p-16 bg-gray-100 text-gray-900'>
+        <section className='flex items-center h-screen p-16 bg-gray-100 dark:bg-opacity-90 text-gray-900'>
       <div className='container flex flex-col items-center justify-center px-5 mx-auto my-8'>
       <Lottie className=" lg:w-2/5" animationData={pageError} loop={true} />
         <div className='max-w-md text-center'>

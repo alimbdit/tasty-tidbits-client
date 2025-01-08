@@ -30,14 +30,14 @@ const Recipes = () => {
 
   return (
     <>
-      <div className="flex justify-center bg-amber-500 bg-opacity-25">
+      <div className="flex justify-center bg-amber-500 dark:bg-amber-400 bg-opacity-25 dark:bg-opacity-90">
         <div className="container">
           <div className=" flex flex-col-reverse lg:flex-row items-center justify-between  ">
             <div className=" w-full text-center px-5">
               <h2 className=" mb-7 text-5xl font-bold text-red-700 tracking-wider">
                 {chef_name}
               </h2>
-              <p className="text-lg font-medium mb-4">{short_description}</p>
+              <p className="text-lg  dark:text-gray-800 font-medium mb-4">{short_description}</p>
               <div className="mb-4">
                 <p className="text-2xl font-medium text-red-700 tracking-wide mb-3">
                   {/* Experience: {experience} */}

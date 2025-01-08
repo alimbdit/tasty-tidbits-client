@@ -42,7 +42,7 @@ const Blog = () => {
         
       </div>
      
-        <h1 className="font-extrabold text-5xl my-8 text-center text-gradient">
+        <h1 className="font-extrabold text-5xl my-8 text-center text-gradient dark:text-gray-100">
           Simple Question Answer
         </h1>
         <div>

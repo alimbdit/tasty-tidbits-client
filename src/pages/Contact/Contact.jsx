@@ -33,14 +33,14 @@ const Contact = () => {
 
   return (
     <div>
-      <div className="bg-white">
+      <div className="bg-white dark:bg-opacity-80">
         <div className="max-w-7xl mx-auto py-12 sm:px-6 lg:px-8">
           <div className="lg:text-center">
            
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
               Get in touch with us
             </p>
-            <p className="my-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+            <p className="my-4 max-w-2xl text-xl text-gray-500 dark:text-gray-800 lg:mx-auto">
               Have a question or comment about our recipes? Interested in
               collaborating with us? Fill out the form below and we'll get back
               to you as soon as possible.
@@ -98,11 +98,11 @@ const Contact = () => {
                 </button>
               </div>
             </form> */}
-            <div className="lg:mx-auto mx-5 lg:w-1/3 px-7 lg:px-12 py-9 border bg-red-100 bg-opacity-25 border-red-400 rounded-xl mb-6">
-            <h1 className="text-2xl font-bold mb-6">Contact Us</h1>
+            <div className="lg:mx-auto mx-5 lg:w-1/3 px-7 lg:px-12 py-9 border bg-red-100 bg-opacity-25 dark:bg-opacity-30 border-red-400 rounded-xl mb-6">
+            <h1 className="text-2xl font-bold mb-6 dark:text-gray-700">Contact Us</h1>
             <form onSubmit={handleSubmit} action="">
             <input
-              className="input  rounded-2xl placeholder:text-gray-600 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7 mb-5 w-full"
+              className="input  rounded-2xl  placeholder:text-gray-600 dark:text-white dark:placeholder:text-gray-300 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7 mb-5 w-full"
               type="text"
               name="name"
               placeholder="Your Name"
@@ -111,14 +111,14 @@ const Contact = () => {
             
             <input
               onChange={handleEmailChange}
-              className="input  rounded-2xl placeholder:text-gray-600 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7 mb-5 w-full"
+              className="input  rounded-2xl placeholder:text-gray-600 dark:text-white dark:placeholder:text-gray-300 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7 mb-5 w-full"
               type="email"
               name="email"
               placeholder="Your Email"
               required
             />
              <textarea 
-              className="textarea textarea-lg  rounded-2xl placeholder:text-gray-600 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7  w-full"
+              className="textarea textarea-lg  rounded-2xl placeholder:text-gray-600 dark:text-white dark:placeholder:text-gray-300 border-amber-500 focus:ring-2 focus:ring-amber-200 focus:border-red-500 py-2 px-7  w-full"
               type="text"
               name="message"
               placeholder="Message">

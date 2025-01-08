@@ -31,7 +31,7 @@ const RecipeCard = ({ recipe }) => {
 
   return (
     <div className="container">
-      <div className="card lg:card-side  shadow-xl bg-red-200 bg-opacity-40">
+      <div className="card lg:card-side  shadow-xl bg-red-200 bg-opacity-40 dark:bg-red-100 dark:bg-opacity-90">
         <figure className="lg:w-2/5">
           <LazyLoadImage className="w-full h-full" src={image_url} alt="recipe" effect="blur"
           delayMethod="throttle"

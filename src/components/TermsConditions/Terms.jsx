@@ -14,17 +14,17 @@ const Terms = () => {
           </label>
         </div>
         <div className="px-5">
-          <h1 className="text-4xl font-bold text-center text-amber-500 uppercase my-8">
+          <h1 className="text-4xl font-bold text-center text-amber-500 dark:text-amber-400 uppercase my-8">
             Terms and Conditions
           </h1>
-          <h2 className="text-xl font-medium text-red-500 text-center mb-6">
+          <h2 className="text-xl font-medium text-red-500 dark:text-red-400 text-center mb-6">
             Welcome to our food website. By using our website, you agree to
             comply with and be bound by the following terms and conditions of
             use, which together with our privacy policy, govern our relationship
             with you in relation to this website.
           </h2>
 
-          <ul className="px-5 list-decimal mb-20 text-lg text-gray-600 space-y-1">
+          <ul className="px-5 list-decimal mb-20 text-lg text-gray-600 dark:text-gray-200 space-y-1">
             <li>
               The content of the pages of this website is for your general
               information and use only. It is subject to change without notice.

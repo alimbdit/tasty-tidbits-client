@@ -22,7 +22,7 @@
     @apply bg-red-700 hover:bg-gray-500 text-white font-medium rounded-full px-5 py-2 text-lg justify-center cursor-pointer
 }
 .btn-disabled{
-    @apply bg-gray-200 text-gray-500 font-medium rounded-full px-5 py-2 text-lg justify-center
+    @apply bg-gray-200 dark:bg-gray-100 text-gray-500 font-medium rounded-full px-5 py-2 text-lg justify-center
 }
 .btn-accept-disabled{
     @apply bg-amber-300 text-white font-medium rounded-full px-5 py-2 text-lg justify-center 
